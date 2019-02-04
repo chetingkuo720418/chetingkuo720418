@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ほんとうにまじめに努力（どりょく）することは | Docker command</title>
+    <link rel="shortcut icon" type="image/png" href="https://chetingkuo.com/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://chetingkuo.com/favicon.ico">
+    <link rel="stylesheet" href="https://chetingkuo.com/theme/css/screen.css" type="text/css" />
+    <link rel="stylesheet" href="https://chetingkuo.com/theme/css/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://chetingkuo.com/theme/css/print.css" type="text/css" media="print" />
+    <meta name="generator" content="Pelican" />
+    <meta name="description" content="" />
+    <meta name="author" content="CTK" />
+
+    <meta name="keywords" content="docker" />
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="https://chetingkuo.com/">Home</a></li>
+                <li><a href="https://devhints.io/elixir">Elixir cheatsheet</a></li>
+                <li><a href="https://chetingkuo.com/tags/index.html">Tags</a></li>
+                <li><a href="https://chetingkuo.com/authors/index.html">Authors</a></li>
+                <li><a href="https://chetingkuo.com/categories/index.html">Categories</a></li>
+                <li><a href="https://chetingkuo.com/archives/index.html">Archives</a></li>
+            </ul>
+        </nav>
+        <div class="header_box">
+            <h1><a href="https://chetingkuo.com/">ほんとうにまじめに努力（どりょく）することは</a></h1>
+        </div>
+    </header>
+    <div id="wrapper">
+        <div id="content">            <h4 class="date">Feb 04, 2019</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://chetingkuo.com/docker command.html" rel="bookmark" title="Permanent Link to &quot;Docker command&quot;">Docker command</a>
+                </h2>
+
+                
+                
+
+                <h2>Build Docker Image</h2>
+<div class="highlight"><pre><span></span>dokcer . -t <span class="s2">&quot;image name&quot;</span>/<span class="s2">&quot;version&quot;</span>
+</pre></div>
+
+
+<h2>Dokcer RUN and Interactive Mode</h2>
+<div class="highlight"><pre><span></span>docker -d -it --name nickname -p <span class="m">8888</span>:8000<span class="o">(</span>container port<span class="o">)</span> -v <span class="s2">&quot;</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">&quot;</span>/repo <span class="o">(</span>container path<span class="o">)</span> <span class="s2">&quot;image name&quot;</span>/<span class="s2">&quot;version&quot;</span> /bin/sh
+</pre></div>
+
+
+<h2>Watch Docker Settings</h2>
+<div class="highlight"><pre><span></span>Docker inspect <span class="s2">&quot;container id&quot;</span>
+</pre></div>
+
+
+<h2>Docker only Interactive Mode</h2>
+<div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it <span class="s2">&quot;container id&quot;</span> /bin/sh
+</pre></div>
+
+
+<h2>Remove all Docker Images</h2>
+<div class="highlight"><pre><span></span>docker rmi <span class="k">$(</span>docker images -q<span class="k">)</span> -f
+</pre></div>
+
+
+<h2>Remove all Docker Containers</h2>
+<div class="highlight"><pre><span></span>docker rm <span class="k">$(</span>docker ps -a -q<span class="k">)</span> -f
+</pre></div>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://chetingkuo.com/docker command.html">posted at 18:12</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://chetingkuo.com/tag/docker.html" class="tags">docker</a>
+                </div>
+            </article>
+            <div class="clear"></div>
+            <footer>
+                <p>
+                &middot;
+                Powered by <a href="http://getpelican.com">Pelican</a>
+            </footer>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>
