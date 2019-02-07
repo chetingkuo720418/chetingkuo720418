@@ -32,7 +32,57 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Feb 05, 2019</h4>
+        <div id="content">            <h4 class="date">Feb 07, 2019</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://chetingkuo.com/Elixir_remote_debug.html" rel="bookmark" title="Permanent Link to &quot;Elixir remote debug&quot;">Elixir remote debug</a>
+                </h2>
+
+                
+                
+
+                <h2>Elixir  remote debug  with Docker</h2>
+<h3>Run inside Container</h3>
+<div class="highlight"><pre><span></span>iex --cookie secret --name remote@1.2.3.4 <span class="se">\</span>
+    --erl <span class="s1">&#39;-kernel inet_dist_listen_min 9000&#39;</span>  <span class="se">\</span>
+    --erl <span class="s1">&#39;-kernel inet_dist_listen_max 9000&#39;</span> <span class="se">\</span>
+    -S mix
+</pre></div>
+
+
+<ol>
+<li>Setting secret as cookie which is used when  conneting nodes together</li>
+<li>Setting name as remote@1.2.3.4 where 1.2.3.4 is IP</li>
+<li>making port is 9000</li>
+</ol>
+<h3>epode</h3>
+<p><code>epmd</code> (Erlang Port Mapper Daemon) is Erlang’s name server which runs by default on the port <code>4369</code>. If a local node wants to connect to the remote node <code>remote@1.2.3.4</code>, it first talks to the <code>epmd</code> process running on <code>1.2.3.4</code> and gets the port where the node <code>remote</code> is running which is <code>9000</code>. Now the local node can directly talk to the remote node using this port.</p>
+<h3>Docker port mappings</h3>
+<p><code>docker run -p 4369:4369 -p 9000:9000 my_elixir_image</code></p>
+<h3>Local node</h3>
+<div class="highlight"><pre><span></span>iex --cookie secret --name local@127.0.0.1 <span class="se">\</span>
+    -e <span class="s2">&quot;Node.connect(:&#39;remote@1.2.3.4&#39;)&quot;</span> <span class="se">\</span>
+    -S mix run --no-start
+</pre></div>
+
+
+<h3>checking node  on local node</h3>
+<div class="highlight"><pre><span></span><span class="n">iex</span><span class="p">(</span><span class="n">local</span><span class="err">@</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">)</span><span class="mi">1</span><span class="o">&gt;</span> <span class="nc">Node</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+</pre></div>
+
+
+<h3>start debugger</h3>
+<div class="highlight"><pre><span></span><span class="n">iex</span><span class="p">(</span><span class="n">local</span><span class="err">@</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">)</span><span class="mi">2</span><span class="o">&gt;</span> <span class="ss">:debugger</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://chetingkuo.com/Elixir_remote_debug.html">posted at 16:48</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://chetingkuo.com/tag/elixir.html" class="tags">elixir</a>
+                </div>
+            </article>            <h4 class="date">Feb 05, 2019</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -79,13 +129,17 @@
 
             <article class="post">
                 <h2 class="title">
-                    <a href="https://chetingkuo.com/docker command.html" rel="bookmark" title="Permanent Link to &quot;Docker command&quot;">Docker command</a>
+                    <a href="https://chetingkuo.com/docker-command.html" rel="bookmark" title="Permanent Link to &quot;Docker command&quot;">Docker command</a>
                 </h2>
 
                 
                 
 
-                <h2>Build Docker Image</h2>
+                <p>date: 2019-02-04 18:12</p>
+<p>comments: true</p>
+<p>slug:  docker command</p>
+<p>tags: docker</p>
+<h2>Build Docker Image</h2>
 <div class="highlight"><pre><span></span>dokcer . -t <span class="s2">&quot;image name&quot;</span>/<span class="s2">&quot;version&quot;</span>
 </pre></div>
 
@@ -116,9 +170,7 @@
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="https://chetingkuo.com/docker command.html">posted at 18:12</a>
-                    &nbsp;&middot;
-                    &nbsp;<a href="https://chetingkuo.com/tag/docker.html" class="tags">docker</a>
+                    <a href="https://chetingkuo.com/docker-command.html">posted at 00:00</a>
                 </div>
             </article>
 
