@@ -32,7 +32,62 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Feb 07, 2019</h4>
+        <div id="content">            <h4 class="date">Feb 10, 2019</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://chetingkuo.com/elixir-using-python.html" rel="bookmark" title="Permanent Link to &quot;Elixir using Python&quot;">Elixir using Python</a>
+                </h2>
+
+                
+                
+
+                <p>date: 2019-02-10 15:19</p>
+<p>comments: true</p>
+<p>slug: elixir using python</p>
+<p>tags: elixir</p>
+<h2>Install erlport</h2>
+<div class="highlight"><pre><span></span><span class="n">on</span> <span class="n">mix</span><span class="o">.</span><span class="n">exs</span> <span class="n">file</span>
+
+<span class="p">{</span><span class="ss">:erlport</span><span class="p">,</span> <span class="s2">&quot;~&gt; 0.9&quot;</span><span class="p">}</span>
+</pre></div>
+
+
+<h2>Using Python on Elixir</h2>
+<div class="highlight"><pre><span></span>#creates and Elixir process for calling python functions
+{:ok, pid} = :python.start()
+</pre></div>
+
+
+<h2>Checking Python version</h2>
+<div class="highlight"><pre><span></span><span class="c1">#get the current python version</span>
+<span class="ss">:python</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="ss">:sys</span><span class="p">,</span> <span class="ss">:&#39;version.__str__&#39;</span><span class="p">,</span> <span class="p">[])</span>
+</pre></div>
+
+
+<h2>Setting Path</h2>
+<div class="highlight"><pre><span></span><span class="c1">#Automatically load all modules in directory with path </span>
+<span class="o">/</span><span class="n">custom</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="n">directory</span>
+
+<span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="ss">:python</span><span class="o">.</span><span class="n">start</span><span class="p">([{</span><span class="ss">:python_path</span><span class="p">,</span> <span class="s1">&#39;/custom/modules/directory&#39;</span><span class="p">}])</span>
+</pre></div>
+
+
+<h2>Call Python Function</h2>
+<div class="highlight"><pre><span></span><span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">pid</span><span class="p">}</span> <span class="o">=</span> <span class="ss">:python</span><span class="o">.</span><span class="n">start</span><span class="p">([{</span><span class="ss">:python_path</span><span class="p">,</span> <span class="s1">&#39;custom_modules_directory&#39;</span><span class="p">}])</span>
+
+<span class="n">module</span> <span class="o">=</span> <span class="ss">:test</span> <span class="c1">#python module to call </span>
+<span class="n">function</span> <span class="o">=</span> <span class="ss">:hello</span> <span class="c1"># function in module</span>
+<span class="n">arguments</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;World&quot;</span><span class="p">]</span> <span class="c1"># list of arguments pass to function the function</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="ss">:python</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="n">module</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">arguments</span><span class="p">)</span>
+</pre></div>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://chetingkuo.com/elixir-using-python.html">posted at 00:00</a>
+                </div>
+            </article>            <h4 class="date">Feb 07, 2019</h4>
 
             <article class="post">
                 <h2 class="title">
@@ -129,17 +184,13 @@
 
             <article class="post">
                 <h2 class="title">
-                    <a href="https://chetingkuo.com/docker-command.html" rel="bookmark" title="Permanent Link to &quot;Docker command&quot;">Docker command</a>
+                    <a href="https://chetingkuo.com/docker command.html" rel="bookmark" title="Permanent Link to &quot;Docker command&quot;">Docker command</a>
                 </h2>
 
                 
                 
 
-                <p>date: 2019-02-04 18:12</p>
-<p>comments: true</p>
-<p>slug:  docker command</p>
-<p>tags: docker</p>
-<h2>Build Docker Image</h2>
+                <h2>Build Docker Image</h2>
 <div class="highlight"><pre><span></span>dokcer . -t <span class="s2">&quot;image name&quot;</span>/<span class="s2">&quot;version&quot;</span>
 </pre></div>
 
@@ -170,7 +221,9 @@
                 <div class="clear"></div>
 
                 <div class="info">
-                    <a href="https://chetingkuo.com/docker-command.html">posted at 00:00</a>
+                    <a href="https://chetingkuo.com/docker command.html">posted at 18:12</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://chetingkuo.com/tag/docker.html" class="tags">docker</a>
                 </div>
             </article>
 
