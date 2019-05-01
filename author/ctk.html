@@ -34,7 +34,88 @@
         </div>
     </header>
     <div id="wrapper">
-        <div id="content">            <h4 class="date">Feb 10, 2019</h4>
+        <div id="content">            <h4 class="date">Apr 30, 2019</h4>
+
+            <article class="post">
+                <h2 class="title">
+                    <a href="https://chetingkuo.com/elixir-ecto.html" rel="bookmark" title="Permanent Link to &quot;elixir ecto command&quot;">elixir ecto command</a>
+                </h2>
+
+                
+                
+
+                <h2>step ecto</h2>
+<ol>
+<li>generated migration file</li>
+</ol>
+<p><code>bash
+   mix ecto.generate XXXX</code></p>
+<ol>
+<li>nano 201904012_XXX.exs</li>
+</ol>
+<p>```elixir
+   create_if_not_exists table(:user, primary_key: false) do
+         add :username, :string, size: 300, primary_key: true
+         add :email, :string, size: 300, primary_key: true
+         add :birthday, :utc_datetime, null: true
+         add :country, :string, size: 300, null: true
+         add :phone, :integer, null: true
+         add :nickname, :string, size: 1000
+         add :description, :string, size: 10000, null: true
+         add :cover, :string, size: 1000, null: true
+         add :is_admin, :boolean, default: false, null: false
+         add :is_stop, :boolean, default: false, null: false
+         add :password, :string, size: 1000
+         timestamps()
+   end</p>
+<p>alter table(:user) do
+         modify(:inserted_at, :timestamp, default: fragment("NOW()"))
+         modify(:updated_at, :timestamp, default: fragment("NOW()"))
+   end</p>
+<p>create_if_not_exists table(:portfolio) do
+         add :name, :string, size: 100 , primary_key: true
+         add :url, :string, size: 1000, primary_key: true
+         add :user, references("user", [column: "username", type: :string ,on_delete: :nothing])
+         timestamps()
+   end
+   ```</p>
+<ol>
+<li>Migrate database</li>
+</ol>
+<p><code>bash
+   mix ecto.migrate</code></p>
+<ol>
+<li>new and edit  user.ex</li>
+</ol>
+<p>```elixir
+   schema "user" do
+       field :username, :string, primary_key: true
+       field :email, :string , primary_key: true
+       field :birthday, :utc_datetime, null: true
+       field :country, :string, size: 300, null: true
+       field :phone, :integer, null: true
+       field :nickname, :string, size: 1000
+       field :description, :string, size: 10000, null: true
+       field :cover, :string, size: 1000, null: true
+       field :password, Comeonin.Ecto.Password
+       field :is_admin, :boolean, default: false, null: false
+       field :is_stop, :boolean, default: false, null: false</p>
+<div class="highlight"><pre><span></span>   has_many :portfolio, Kiru.Portfolio
+   many_to_many :socialnetwork, Kiru.Socialnetworks, join_through: &quot;Socialnetworks_user&quot;
+</pre></div>
+
+
+<p>end
+   ```</p>
+                <div class="clear"></div>
+
+                <div class="info">
+                    <a href="https://chetingkuo.com/elixir-ecto.html">posted at 17:10</a>
+                    &nbsp;&middot;
+                    &nbsp;<a href="https://chetingkuo.com/tag/elixir.html" class="tags">elixir</a>
+                    &nbsp;<a href="https://chetingkuo.com/tag/ecto.html" class="tags">ecto</a>
+                </div>
+            </article>            <h4 class="date">Feb 10, 2019</h4>
 
             <article class="post">
                 <h2 class="title">
