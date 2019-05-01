@@ -46,59 +46,64 @@
 
                 <h2>step ecto</h2>
 <p>1.generated migration file</p>
-<p><code>bash
-   mix ecto.generate XXXX</code></p>
-<p>2.nano 201904012_XXX.exs</p>
-<p>```elixir
-   create_if_not_exists table(:user, primary_key: false) do
-         add :username, :string, size: 300, primary_key: true
-         add :email, :string, size: 300, primary_key: true
-         add :birthday, :utc_datetime, null: true
-         add :country, :string, size: 300, null: true
-         add :phone, :integer, null: true
-         add :nickname, :string, size: 1000
-         add :description, :string, size: 10000, null: true
-         add :cover, :string, size: 1000, null: true
-         add :is_admin, :boolean, default: false, null: false
-         add :is_stop, :boolean, default: false, null: false
-         add :password, :string, size: 1000
-         timestamps()
-   end</p>
-<p>alter table(:user) do
-         modify(:inserted_at, :timestamp, default: fragment("NOW()"))
-         modify(:updated_at, :timestamp, default: fragment("NOW()"))
-   end</p>
-<p>create_if_not_exists table(:portfolio) do
-         add :name, :string, size: 100 , primary_key: true
-         add :url, :string, size: 1000, primary_key: true
-         add :user, references("user", [column: "username", type: :string ,on_delete: :nothing])
-         timestamps()
-   end
-   ```</p>
-<p>3.Migrate database</p>
-<p><code>bash
-   mix ecto.migrate</code></p>
-<p>4.new and edit user.ex</p>
-<p>```elixir
-   schema "user" do
-       field :username, :string, primary_key: true
-       field :email, :string , primary_key: true
-       field :birthday, :utc_datetime, null: true
-       field :country, :string, size: 300, null: true
-       field :phone, :integer, null: true
-       field :nickname, :string, size: 1000
-       field :description, :string, size: 10000, null: true
-       field :cover, :string, size: 1000, null: true
-       field :password, Comeonin.Ecto.Password
-       field :is_admin, :boolean, default: false, null: false
-       field :is_stop, :boolean, default: false, null: false</p>
-<div class="highlight"><pre><span></span>   has_many :portfolio, Kiru.Portfolio
-   many_to_many :socialnetwork, Kiru.Socialnetworks, join_through: &quot;Socialnetworks_user&quot;
+<div class="highlight"><pre><span></span>mix ecto.generate XXXX 
 </pre></div>
 
 
-<p>end
-   ```</p>
+<p>2.nano 201904012_XXX.exs</p>
+<div class="highlight"><pre><span></span>create_if_not_exists table(:user, primary_key: false) do
+     add :username, :string, size: 300, primary_key: true
+     add :email, :string, size: 300, primary_key: true
+     add :birthday, :utc_datetime, null: true
+     add :country, :string, size: 300, null: true
+     add :phone, :integer, null: true
+     add :nickname, :string, size: 1000
+     add :description, :string, size: 10000, null: true
+     add :cover, :string, size: 1000, null: true
+     add :is_admin, :boolean, default: false, null: false
+     add :is_stop, :boolean, default: false, null: false
+     add :password, :string, size: 1000
+     timestamps()
+end
+
+alter table(:user) do
+     modify(:inserted_at, :timestamp, default: fragment(&quot;NOW()&quot;))
+     modify(:updated_at, :timestamp, default: fragment(&quot;NOW()&quot;))
+end
+
+create_if_not_exists table(:portfolio) do
+     add :name, :string, size: 100 , primary_key: true
+     add :url, :string, size: 1000, primary_key: true
+     add :user, references(&quot;user&quot;, [column: &quot;username&quot;, type: :string ,on_delete: :nothing])
+     timestamps()
+end
+</pre></div>
+
+
+<p>3.Migrate database</p>
+<div class="highlight"><pre><span></span>mix ecto.migrate
+</pre></div>
+
+
+<p>4.new and edit user.ex</p>
+<div class="highlight"><pre><span></span><span class="n">schema</span> <span class="s2">&quot;user&quot;</span> <span class="k">do</span>
+   <span class="n">field</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">primary_key</span><span class="p">:</span> <span class="no">true</span>
+   <span class="n">field</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">:string</span> <span class="p">,</span> <span class="ss">primary_key</span><span class="p">:</span> <span class="no">true</span>
+   <span class="n">field</span> <span class="ss">:birthday</span><span class="p">,</span> <span class="ss">:utc_datetime</span><span class="p">,</span> <span class="ss">null</span><span class="p">:</span> <span class="no">true</span>
+   <span class="n">field</span> <span class="ss">:country</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">size</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span> <span class="ss">null</span><span class="p">:</span> <span class="no">true</span>
+   <span class="n">field</span> <span class="ss">:phone</span><span class="p">,</span> <span class="ss">:integer</span><span class="p">,</span> <span class="ss">null</span><span class="p">:</span> <span class="no">true</span>
+   <span class="n">field</span> <span class="ss">:nickname</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">size</span><span class="p">:</span> <span class="mi">1000</span>
+   <span class="n">field</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">size</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span> <span class="ss">null</span><span class="p">:</span> <span class="no">true</span>
+   <span class="n">field</span> <span class="ss">:cover</span><span class="p">,</span> <span class="ss">:string</span><span class="p">,</span> <span class="ss">size</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="ss">null</span><span class="p">:</span> <span class="no">true</span>
+   <span class="n">field</span> <span class="ss">:password</span><span class="p">,</span> <span class="nc">Comeonin.Ecto.Password</span>
+   <span class="n">field</span> <span class="ss">:is_admin</span><span class="p">,</span> <span class="ss">:boolean</span><span class="p">,</span> <span class="ss">default</span><span class="p">:</span> <span class="no">false</span><span class="p">,</span> <span class="ss">null</span><span class="p">:</span> <span class="no">false</span>
+   <span class="n">field</span> <span class="ss">:is_stop</span><span class="p">,</span> <span class="ss">:boolean</span><span class="p">,</span> <span class="ss">default</span><span class="p">:</span> <span class="no">false</span><span class="p">,</span> <span class="ss">null</span><span class="p">:</span> <span class="no">false</span>
+
+   <span class="n">has_many</span> <span class="ss">:portfolio</span><span class="p">,</span> <span class="nc">Kiru.Portfolio</span>
+   <span class="n">many_to_many</span> <span class="ss">:socialnetwork</span><span class="p">,</span> <span class="nc">Kiru.Socialnetworks</span><span class="p">,</span> <span class="ss">join_through</span><span class="p">:</span> <span class="s2">&quot;Socialnetworks_user&quot;</span>
+
+<span class="k">end</span>
+</pre></div>
                 <div class="clear"></div>
 
                 <div class="info">
