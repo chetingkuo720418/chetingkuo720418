@@ -45,14 +45,10 @@
                 
 
                 <h2>step ecto</h2>
-<ol>
-<li>generated migration file</li>
-</ol>
+<p>1.generated migration file</p>
 <p><code>bash
    mix ecto.generate XXXX</code></p>
-<ol>
-<li>nano 201904012_XXX.exs</li>
-</ol>
+<p>2.nano 201904012_XXX.exs</p>
 <p>```elixir
    create_if_not_exists table(:user, primary_key: false) do
          add :username, :string, size: 300, primary_key: true
@@ -79,14 +75,10 @@
          timestamps()
    end
    ```</p>
-<ol>
-<li>Migrate database</li>
-</ol>
+<p>3.Migrate database</p>
 <p><code>bash
    mix ecto.migrate</code></p>
-<ol>
-<li>new and edit  user.ex</li>
-</ol>
+<p>4.new and edit user.ex</p>
 <p>```elixir
    schema "user" do
        field :username, :string, primary_key: true
